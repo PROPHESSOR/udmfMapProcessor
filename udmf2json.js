@@ -39,7 +39,7 @@ module.exports = {
             for(const key in block[1]) {
                 const value = block[1][key];
     
-                out += `    ${key} = ${value};\n`;
+                out += `    ${key} = ${typeof value === 'string' ? `"${value}"` : value};\n`;
             }
     
             out += '}\n\n';

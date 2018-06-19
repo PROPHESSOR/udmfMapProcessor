@@ -7,6 +7,8 @@
 
 module.exports = class Line {
     constructor(line, json) { // line - block
+        this.v1 = Line.find(json, 'vertex', line.v1);
+        this.v2 = Line.find(json, 'vertex', line.v2);
         this.sidefront = Line.find(json, 'sidedef', line.sidefront);
         this.sideback = line.sideback
             ? Line.find(json, 'sidedef', line.sideback)
@@ -15,6 +17,10 @@ module.exports = class Line {
         this.backsector = this.sideback
             ? Line.find(json, 'sector', this.sideback.sector)
             : null;
+    }
+
+    avg() {
+        return [(this.v1.x + this.v2.x) / 2, (this.v1.y + this.v2.y) / 2];
     }
     
     toString() {
@@ -36,5 +42,9 @@ module.exports = class Line {
         }
 
         return null;
+    }
+
+    static getSectorVertexes() {
+        // TODO:
     }
 }
