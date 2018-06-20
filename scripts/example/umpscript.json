@@ -1,0 +1,9 @@
+{
+	"name": "test",
+	"author": "PROPHESSOR",
+	"version": "0.0.1",
+	"description": "Скрипт для тестирования модульной системы",
+	"url": "",
+	"main": "script.js",
+	"dependencies": {}
+}
