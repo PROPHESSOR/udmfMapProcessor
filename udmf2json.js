@@ -11,6 +11,11 @@ const IN_FILE = 'test/test.udmf';
 const OUT_FILE = 'test/test.json';
 
 module.exports = {
+    /** Преобразовывает udmf файл в udmf.json массив
+     * @param  {string} infile - Путь к исходному udmf файлу
+     * @param  {string} [outfile] - Путь к файлу для сохранения
+     * @returns {array} - udmf.json массив
+     */
     udmf2json(infile, outfile) {
         const file = '[\n' +
             fs.readFileSync(infile, 'utf8')
@@ -24,10 +29,15 @@ module.exports = {
                 .replace(/,\s*$/, '')                                                       // Remove last "," (file)
             + '\n]';
 
-        fs.writeFileSync(outfile, file);
+        if (outfile) fs.writeFileSync(outfile, file);
 
         return JSON.parse(file);
     },
+    
+    /** Преобразовывает udmf.json массив в udmf
+     * @param  {string | array} infile - udmf.json массив, или путь для чтения
+     * @param  {string} [outfile] - Путь для сохранения выходного udmf файла
+     */
     json2udmf(infile, outfile) {
         const file = typeof infile === 'string' ? require(infile) : infile;
 
@@ -35,7 +45,7 @@ module.exports = {
 
         for (const block of file) {
             out += `${block[0]}`;
-            if(typeof block[2] === 'number') out += ` // #${block[2]}`;
+            if (typeof block[2] === 'number') out += ` // #${block[2]}`;
             out += '\n{\n';
 
             for (const key in block[1]) {
@@ -53,6 +63,11 @@ module.exports = {
 
         return out;
     },
+    
+    /** Преобразовывает udmf.json массив в отсортированный udmf.json объект
+     * @param  {array} json - udmf.json массив
+     * @returns {object} udmf.json объект
+     */
     jsonDecompress(json) {
         const out = {
             thing: [],
@@ -65,13 +80,18 @@ module.exports = {
         for (const block of json) {
             try {
                 out[block[0]].push(block[1]);
-            } catch(e) {
+            } catch (e) {
                 console.error(`Неизвестный блок ${block[0]}`, e);
             }
         }
 
         return out;
     },
+    
+    /** Сжимает udmf.json объект в udmf.json массив
+     * @param  {object} json - udmf объект (получается из jsonDecompress
+     * @returns {array}
+     */
     jsonCompress(json) {
         const things = json.thing.map((e, i) => ['thing', e, i]);
         const linedefs = json.linedef.map((e, i) => ['linedef', e, i]);
