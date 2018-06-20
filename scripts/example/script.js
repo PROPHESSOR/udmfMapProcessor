@@ -5,6 +5,7 @@
 
 'use strict';
 
-module.exports = function() {
+module.exports = function(udmf) {
 	// Здесь будет код скрипта
+	return udmf;
 }

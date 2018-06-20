@@ -63,4 +63,9 @@ const scripts = [];
     }
 }
 
+let tmpfile = file;
+for(const script of scripts) {
+    tmpfile = script.script(tmpfile);
+}
+
 json2udmf(jsonCompress(jsonDecompress(file)), OUT_FILE);
