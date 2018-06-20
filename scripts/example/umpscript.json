@@ -1,8 +1,8 @@
 {
-	"name": "test",
+	"name": "example",
 	"author": "PROPHESSOR",
 	"version": "0.0.1",
-	"description": "Скрипт для тестирования модульной системы",
+	"description": "Пример скрипта для системы UDMF Map Processor",
 	"url": "",
 	"main": "script.js",
 	"dependencies": {}
