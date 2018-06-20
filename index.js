@@ -10,7 +10,7 @@ const OUT_FILE = 'test/test.out.udmf';
 
 const Line = require('./structures/Line');
 const Thing = require('./structures/Thing');
-const { udmf2json, json2udmf } = require('./udmf2json');
+const { udmf2json, json2udmf, jsonCompress, jsonDecompress } = require('./udmf2json');
 
 const file = udmf2json(IN_FILE, OUT_FILE);
 
@@ -43,4 +43,6 @@ for (const line of lines) {
     }
 }
 
-json2udmf(file, OUT_FILE);
+console.dir(jsonCompress(jsonDecompress(file)));
+
+json2udmf(jsonCompress(jsonDecompress(file)), OUT_FILE);
