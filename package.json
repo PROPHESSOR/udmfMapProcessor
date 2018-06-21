@@ -1,0 +1,31 @@
+{
+  "name": "udmfmapprocessor",
+  "version": "0.0.2",
+  "description": "UDMF Map Processor",
+  "main": "\\",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PROPHESSOR/udmfMapProcessor.git"
+  },
+  "keywords": [
+    "doom",
+    "udmf",
+    "ump",
+    "umpscript",
+    "map",
+    "processor",
+    "udmfmapprocessor"
+  ],
+  "author": "PROPHESSOR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PROPHESSOR/udmfMapProcessor/issues"
+  },
+  "homepage": "https://github.com/PROPHESSOR/udmfMapProcessor#readme"
+}

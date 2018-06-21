@@ -15,16 +15,30 @@ module.exports = class Thing {
     constructor(xyz, type, args) {
         [this.x, this.y, this.z] = xyz;
         this.type = type;
+        this.args = args;
     }
     
     /** Преобразовывает в сжатый udmf.json вид
      * @returns {array}
      */
     toArray() {
-        return [
-            "thing", {
-                "x": this.x, "y": this.y, "type": this.type, "coop": true, "dm": true, "single": true, "skill1": true, "skill2": true, "skill3": true, "skill4": true, "skill5": true
-            }];
+        const tmp = {
+            "x": this.x,
+            "y": this.y,
+            "type": this.type,
+            "coop": true,
+            "dm": true,
+            "single": true,
+            "skill1": true,
+            "skill2": true,
+            "skill3": true,
+            "skill4": true,
+            "skill5": true
+        };
+
+        for(const i in this.args) tmp[`arg${i}`] = this.args[i];
+
+        return ["thing", tmp];
     }
     
     /** Старый преобразователь в UDMF вид

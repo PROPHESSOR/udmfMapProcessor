@@ -16,36 +16,29 @@ const Thing = require('./structures/Thing');
 const Script = require('./Script');
 
 const { udmf2json, json2udmf, jsonCompress, jsonDecompress } = require('./udmf2json');
+const packagejson = require('./package.json');
 
-const file = udmf2json(IN_FILE, OUT_FILE);
+console.info(`
+ #====== UDMF Map Processor ======#
+        v.${packagejson.version} by PROPHESSOR
+ #====== ------------------ ======#
+
+`);
+
+const udmfarray = udmf2json(IN_FILE, OUT_FILE);
+const udmfobject = jsonDecompress(udmfarray);
 
 const lines = [];
 
-for (const block of file) {
+for (const block of udmfarray) {
     if (block[0] === 'linedef') {
-        const line = new Line(block[1], file);
+        const line = new Line(block[1], udmfarray);
         lines.push(line);
         // console.log(line)
     }
 }
 
-const lighttextures = ['LITE3'];
-
-for (const line of lines) {
-    for (const texture of lighttextures) {
-        if (line.sidefront.texturetop === texture
-            || line.sidefront.texturemiddle === texture
-            || line.sidefront.texturebottom === texture
-            || (line.sideback && (
-                line.sideback.texturetop === texture
-                || line.sideback.texturemiddle === texture
-                || line.sideback.texturebottom === texture
-            ))) {
-            const lineAvg = line.avg();
-            file.push((new Thing(lineAvg, 56)).toArray());
-        }
-    }
-}
+console.log('Подключение скриптов...');
 
 const scripts = [];
 {
@@ -53,19 +46,26 @@ const scripts = [];
     let folderdata = null;
     try {
         folderdata = fs.readdirSync(scriptpath);
-    } catch(e) {
+    } catch (e) {
         console.error(e);
         return console.error(`\n\nНевозможно прочитать содержимое папки по пути ${scriptpath}!\n`)
     }
 
-    for(const scriptfolder of folderdata) {
+    for (const scriptfolder of folderdata) {
         scripts.push(new Script(path.join(scriptpath, scriptfolder)));
     }
 }
 
-let tmpfile = file;
-for(const script of scripts) {
-    tmpfile = script.script(tmpfile);
+console.log('Обработка карты...');
+{
+    let i = 0;
+    for (const script of scripts) {
+        console.log(`> [${++i / scripts.length * 100}%]: Обработка скриптом ${script.name}`)
+        Object.assign(udmfarray, script.run(udmfarray, udmfobject, lines));
+    }
 }
 
-json2udmf(jsonCompress(jsonDecompress(file)), OUT_FILE);
+json2udmf(jsonCompress(jsonDecompress(udmfarray)), OUT_FILE);
+
+console.info('Обработка карты завершена!');
+console.info(`Путь к файлу: ${OUT_FILE}`);

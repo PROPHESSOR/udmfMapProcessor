@@ -1,0 +1,9 @@
+{
+	"name": "ltlt",
+	"author": "PROPHESSOR",
+	"version": "0.0.1",
+	"description": "[Light to light texture] Скрипт, добавляющий динлайты на стены со 'светящимися' текстурами",
+	"url": "",
+	"main": "script.js",
+	"dependencies": {}
+}

@@ -46,7 +46,7 @@ module.exports = class Script {
 
         const mainpath = path.join(folder, umpscript.main);
         try {
-            this.script = require(mainpath)
+            this.run = require(mainpath)
         } catch(e) {
             console.error(e);
             return console.error(`\n\nНевозможно прочитать файл по пути ${umpscriptpath}!\n`)

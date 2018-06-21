@@ -27,7 +27,7 @@ module.exports = class Line {
     /** Возвращает координаты середины линии
      * @returns {array} [x, y]
      */
-    avg() {
+    get avg() {
         return [(this.v1.x + this.v2.x) / 2, (this.v1.y + this.v2.y) / 2];
     }
     
