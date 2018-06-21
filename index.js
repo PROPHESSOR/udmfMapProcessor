@@ -5,8 +5,8 @@
  * https://opensource.org/licenses/MIT
  */
 
-const IN_FILE = 'test/test.udmf';
-const OUT_FILE = 'test/test.out.udmf';
+const IN_FILE = 'input/TEXTMAP';
+const OUT_FILE = 'output/TEXTMAP';
 
 const fs = require('fs');
 const path = require('path');

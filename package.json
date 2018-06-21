@@ -1,13 +1,14 @@
 {
   "name": "udmfmapprocessor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "UDMF Map Processor",
-  "main": "\\",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

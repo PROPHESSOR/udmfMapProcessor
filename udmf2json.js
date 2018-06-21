@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 
-const IN_FILE = 'test/test.udmf';
+const IN_FILE = 'input/TEXTMAP';
 const OUT_FILE = 'test/test.json';
 
 module.exports = {
