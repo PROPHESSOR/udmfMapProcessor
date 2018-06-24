@@ -11,8 +11,6 @@ const OUT_FILE = 'output/TEXTMAP';
 const fs = require('fs');
 const path = require('path');
 
-const Line = require('./structures/Line');
-const Thing = require('./structures/Thing');
 const Script = require('./Script');
 
 const { udmf2json, json2udmf, jsonCompress, jsonDecompress } = require('./udmf2json');
@@ -28,16 +26,6 @@ console.info(`
 const udmfarray = udmf2json(IN_FILE, OUT_FILE);
 const udmfobject = jsonDecompress(udmfarray);
 
-const lines = [];
-
-for (const block of udmfarray) {
-    if (block[0] === 'linedef') {
-        const line = new Line(block[1], udmfarray);
-        lines.push(line);
-        // console.log(line)
-    }
-}
-
 console.log('Подключение скриптов...');
 
 const scripts = [];
@@ -48,7 +36,7 @@ const scripts = [];
         folderdata = fs.readdirSync(scriptpath);
     } catch (e) {
         console.error(e);
-        return console.error(`\n\nНевозможно прочитать содержимое папки по пути ${scriptpath}!\n`)
+        return console.error(`\n\nНевозможно прочитать содержимое папки по пути ${scriptpath}!\n`);
     }
 
     for (const scriptfolder of folderdata) {
@@ -60,12 +48,12 @@ console.log('Обработка карты...');
 {
     let i = 0;
     for (const script of scripts) {
-        console.log(`> [${++i / scripts.length * 100}%]: Обработка скриптом ${script.name}`)
-        Object.assign(udmfarray, script.run(udmfarray, udmfobject, lines));
+        console.log(`> [${Math.floor(i++ / scripts.length * 100)}%]: Обработка скриптом ${script.name}`);
+        Object.assign(udmfarray, script.run(udmfarray, udmfobject));
     }
 }
 
 json2udmf(jsonCompress(jsonDecompress(udmfarray)), OUT_FILE);
 
-console.info('Обработка карты завершена!');
+console.info('> [100%]: Обработка карты завершена!');
 console.info(`Путь к файлу: ${OUT_FILE}`);

@@ -5,7 +5,7 @@
 
 'use strict';
 
-module.exports = function(udmf) {
-	// Здесь будет код скрипта
-	return udmf;
-}
+module.exports = function (udmfarray, udmfobject) {
+    // Здесь будет код скрипта
+    return udmfarray;
+};
