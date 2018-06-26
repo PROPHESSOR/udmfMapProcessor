@@ -10,7 +10,7 @@ const Thing = require('../../structures/Thing');
 const lighttextures = ['LITE3'];
 
 module.exports = function (udmfarray, udmfobject, lines) {
-    for (const line of lines) {
+/*     for (const line of lines) {
         for (const texture of lighttextures) {
             if (line.sidefront.texturetop === texture
                 || line.sidefront.texturemiddle === texture
@@ -24,7 +24,7 @@ module.exports = function (udmfarray, udmfobject, lines) {
                 udmfarray.push((new Thing(line.avg, 56)).toArray());
             }
         }
-    }
+    } */
 
     return udmfarray;
 }

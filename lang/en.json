@@ -1,0 +1,33 @@
+{
+    "log": {
+        "connecting_scripts": "Connecting scripts...",
+        "processing_map": "Processing a map...",
+        "script_process": "Script processing",
+        "success": "Map processing completed",
+        "path_to_file": "The path to the file"
+    },
+    "error": {
+        "readdir": "Can not read the contents of the folder along the path",
+        "readfile": "Can not read file by path",
+        "infile": "Error in file",
+        "writefile": "Error writing to file"
+    },
+    "question": {
+        "select_scripts": "Select scripts to process"
+    },
+    "Script": {
+        "error": {
+            "must_have_path": "The script must have a path",
+            "type_error": "The field type ${key} must be ${value}"
+        },
+        "log": {
+            "success": "Script \"${name}\" v.${version} by \"${author}\" has been successfully activated!"
+        }
+    },
+    "Config": {
+        "log": {
+            "success": "Setup completed successfully!",
+            "restart": "Please restart the program"
+        }
+    }
+}

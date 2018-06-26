@@ -1,6 +1,6 @@
 {
   "name": "udmfmapprocessor",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "UDMF Map Processor",
   "main": "index.js",
   "directories": {
@@ -28,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/PROPHESSOR/udmfMapProcessor/issues"
   },
-  "homepage": "https://github.com/PROPHESSOR/udmfMapProcessor#readme"
+  "homepage": "https://github.com/PROPHESSOR/udmfMapProcessor#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "inquirer": "^6.0.0"
+  }
 }
