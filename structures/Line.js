@@ -10,8 +10,10 @@ module.exports = class Line {
      * @constructor
      * @param  {array} line - udmf.json блок линии
      * @param  {array} json - udmf.json
+     * @param  {number} index - индекс блока
      */
-    constructor(line, json) { // line - block
+    constructor(line, json, index) { // line - block
+        this.index = index;
         this.v1 = Line.find(json, 'vertex', line.v1);
         this.v2 = Line.find(json, 'vertex', line.v2);
         this.sidefront = Line.find(json, 'sidedef', line.sidefront);
