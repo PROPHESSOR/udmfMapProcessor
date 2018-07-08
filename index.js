@@ -11,6 +11,8 @@ const OUT_FILE = 'output/TEXTMAP';
 const fs = require('fs');
 const path = require('path');
 
+const { UDMFBlock, Line, Sector } = require('./lib/oop');
+
 let chalk = null;
 let inquirer = null;
 try {
@@ -46,7 +48,16 @@ console.info(`
 
 `);
 
-const udmfarray = udmf2json(IN_FILE, OUT_FILE);
+const udmfarray = udmf2json(IN_FILE, OUT_FILE).map(e => {
+    switch (e[0]) {
+        case 'sector':
+            return new Sector(e);
+        case 'line':
+            return new Line(e);
+        default:
+            return new UDMFBlock(e);
+    }
+});
 const udmfobject = jsonDecompress(udmfarray);
 
 console.log(chalk.cyan(Lang.log.connecting_scripts));
